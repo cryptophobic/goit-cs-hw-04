@@ -6,9 +6,6 @@ import time
 
 
 def get_files_list(directory: str) -> list:
-    if not (os.path.exists(directory) and os.path.isdir(directory)):
-        raise FileNotFoundError(f"{directory} is not a valid path to directory")
-
     return [os.path.join(directory, f) for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
 
 def process_files(file_list, keywords, results, time_elapsed, lock):
