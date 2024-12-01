@@ -1,4 +1,5 @@
 import argparse
+import math
 import os
 import re
 import threading
@@ -36,7 +37,7 @@ def process_files(file_list, keywords, results, time_elapsed, lock):
 
 def main(directory: str, threads: int, keywords: list):
     files = get_files_list(directory)
-    chunk_size = len(files) // threads
+    chunk_size = math.ceil(len(files) / threads)
     chunks = [files[i:i + chunk_size] for i in range(0, len(files), chunk_size)]
 
     results = {}

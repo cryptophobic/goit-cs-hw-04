@@ -1,4 +1,5 @@
 import argparse
+import math
 import multiprocessing
 import os
 import re
@@ -33,7 +34,7 @@ def process_files(file_list, keywords, result_queue, time_elapsed):
 
 def main(directory: str, processes: int, keywords: list):
     files = get_files_list(directory)
-    chunk_size = len(files) // processes
+    chunk_size = math.ceil(len(files) / processes)
     chunks = [files[i:i + chunk_size] for i in range(0, len(files), chunk_size)]
 
     time_elapsed_queue = multiprocessing.Queue()
